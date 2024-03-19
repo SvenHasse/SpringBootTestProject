@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5437/root
+    username: root
+    password: root
+
+  rabbitmq:
+    ssl:
+      enabled: false
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
