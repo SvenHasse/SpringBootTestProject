@@ -15,8 +15,6 @@
     5672
   ],
 
-  "postCreateCommand": "echo 'Dev Container für Spring Boot Projekt ist bereit!'",
-
   "extensions": [
     "vscjava.vscode-spring-boot-dashboard",
     "pivotal.vscode-boot-dev-pack"
