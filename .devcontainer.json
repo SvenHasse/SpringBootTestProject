@@ -13,10 +13,5 @@
     5432,
     15672,
     5672
-  ],
-
-  "extensions": [
-    "vscjava.vscode-spring-boot-dashboard",
-    "pivotal.vscode-boot-dev-pack"
   ]
 }
