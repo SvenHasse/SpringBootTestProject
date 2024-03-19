@@ -1,6 +1,7 @@
 {
   "name": "Mein Spring Boot Projekt",
   "dockerComposeFile": "docker-compose.yml",
+  "service": "myapp",
   "workspaceFolder": "/workspace",
   "extensions": [
     "vscjava.vscode-java-pack"
