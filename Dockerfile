@@ -1,10 +1,7 @@
-FROM eclipse-temurin:17-jre
+FROM mcr.microsoft.com/devcontainers/base:ubuntu
 
-EXPOSE 8080
-
-
-RUN chgrp -R 0 /opt && \
-    chmod -R g=u /opt
-
-COPY --from=0 "/SpringBootTestProject/target/myapp.jar" app.jar
-ENTRYPOINT [ "java", "-Dspring.profiles.active=default", "-jar", "/app.jar"]
+# Installiere zusätzliche Pakete
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*

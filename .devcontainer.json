@@ -1,24 +1,24 @@
 {
-  "name": "Mein Spring Boot Projekt",
+  "name": "Spring Boot Test Projekt",
   "dockerComposeFile": "docker-compose.yml",
-  "service": "myapp",
+  "service": "main-dev-container",
   "workspaceFolder": "/workspace",
-  "extensions": [
-    "vscjava.vscode-java-pack"
-  ],
+
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash"
   },
-  "postCreateCommand": "mvn install",
-  "runArgs": [
-    "--service-ports"
-  ],
-  "shutdownAction": "stopCompose",
+
   "forwardPorts": [
     8080,
-    5437,
-    5672,
-    15672
+    5432,
+    15672,
+    5672
   ],
-  "overrideCommand": false
+
+  "postCreateCommand": "echo 'Dev Container für Spring Boot Projekt ist bereit!'",
+
+  "extensions": [
+    "vscjava.vscode-spring-boot-dashboard",
+    "pivotal.vscode-boot-dev-pack"
+  ]
 }

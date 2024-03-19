@@ -1,7 +1,7 @@
 version: "3.9"
 services:
-  test-db:
-    container_name: test-db
+  db:
+    container_name: db
     image: 'postgres:14.3-alpine'
     ports:
       - "5437:5432"
@@ -11,15 +11,20 @@ services:
       - POSTGRES_PASSWORD=root
     command: -p 5432
 
-  test-rabbitmq:
-    container_name: test-rabbitmq
+  rabbitmq:
+    container_name: rabbitmq
     image: rabbitmq:3.10-management
     ports:
       - "5672:5672"
       - "15672:15672"
 
-  myapp:
-    container_name: myapp
-    build:
-      context: .
-      dockerfile: Dockerfile
+  main-dev-container:
+    container_name: main-dev-container
+    build: .
+    volumes:
+      - .:/workspace
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - rabbitmq
