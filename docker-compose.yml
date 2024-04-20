@@ -1,31 +1,35 @@
 version: "3.9"
 services:
-  db:
-    container_name: db
-    image: postgres:14.3-alpine
-    ports:
-      - "5437:5432"
-    environment:
-      - POSTGRES_DB=root
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
-    command: -p 5432
 
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=developer
+      - POSTGRES_DB=gpl_outbound_service_db
+      - POSTGRES_PASSWORD=postgresql
   rabbitmq:
-    container_name: rabbitmq
-    image: rabbitmq:3.10-management
+    image: rabbitmq:3.12-management
     ports:
       - "5672:5672"
       - "15672:15672"
+  sftp:
+    image: "emberstack/sftp"
+    ports:
+        - "10000:22"
+    volumes:
+      - .local/sftp/sftp-directories.json:/app/config/sftp.json:ro
 
   main-dev-container:
     container_name: main-dev-container
-    build: .
+    build: devcontainer/.
     volumes:
       - .:/workspace
     command: tail -f /dev/null
     ports:
-      - "8080:8080"
+      - "8081:8081"
     depends_on:
-      - db
+      - postgres
       - rabbitmq
+      - sftp
