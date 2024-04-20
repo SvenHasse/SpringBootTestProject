@@ -1,5 +1,5 @@
 {
-  "name": "Spring Boot Test Projekt",
+  "name": "outbound-service",
   "dockerComposeFile": "docker-compose.yml",
   "service": "main-dev-container",
   "workspaceFolder": "/workspace",
@@ -8,8 +8,22 @@
     "terminal.integrated.shell.linux": "/bin/bash"
   },
 
+  "features": {
+     "ghcr.io/devcontainers-contrib/features/maven-sdkman:2": {
+       "version": "latest"
+     }
+  },
+
+  "postStartCommand": "git config --global --add safe.directory /workspace && mvn clean compile",
+
+  "containerEnv": {
+    "OTEL_LOGS_EXPORTER": "logging",
+    "OTEL_METRICS_EXPORTER": "none",
+    "OTEL_TRACES_EXPORTER": "logging"
+  },
+
   "forwardPorts": [
-    8080,
+    8081,
     5432,
     15672,
     5672
