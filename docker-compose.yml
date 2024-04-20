@@ -18,8 +18,6 @@ services:
     image: "emberstack/sftp"
     ports:
         - "10000:22"
-    volumes:
-      - .local/sftp/sftp-directories.json:/app/config/sftp.json:ro
 
   main-dev-container:
     container_name: main-dev-container
