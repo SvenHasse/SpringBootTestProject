@@ -4,14 +4,14 @@ spring:
       on-profile: default
 
   datasource:
-    url: jdbc:postgresql://localhost:5437/root
+    url: jdbc:postgresql://postgres:5432/root
     username: root
     password: root
 
   rabbitmq:
     ssl:
       enabled: false
-    host: localhost
+    host: rabbitmq
     port: 5672
     username: guest
     password: guest
